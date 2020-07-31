@@ -66,8 +66,8 @@ If you want to try it nevertheless, just edit the Makefile in the 'compilation p
 
 # Misc
 
-By default, the STM32F103C8T6 only has 64k of flash memory. However, in practice a lot of the boards you can by out there actually have 128k of flash.
-To utilize all the flash
+By default, the STM32F103C8T6 only has 64k of flash memory. However, in practice a lot of the boards you can buy out there actually have 128k of flash.
+To utilize all the flash, edit the linker script `linker.ld` and change `LENGTH = 64k` to `LENGTH = 128k` for the `ROM` section.
 
 # License
 
