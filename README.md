@@ -51,7 +51,7 @@ make flash
 ```
 After this is done, change your boot pins to BOOT0=LOW and BOOT1=LOW, reset the device and enjoy your running program.
 
-# Porting this project to other STM32 device
+# Porting this project to other STM32 devices
 
 By default, this project is intended to run on a "blue-pill board" which has an STM32F103C8T6 part. If you want to use a different STM32 part you have to do the following:
 
