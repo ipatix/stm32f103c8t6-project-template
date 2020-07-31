@@ -18,6 +18,7 @@ UART_DEV  := /dev/ttyUSB0
 LIBOPENCM3     := libopencm3
 LIBOPENCM3_LIB := $(LIBOPENCM3)/lib/libopencm3_stm32f1.a
 LIBOPENCM3_INC := $(LIBOPENCM3)/include
+CFLAGS := $(CFLAGS) -DSTM32F1
 
 ###################
 # compilation paths
@@ -46,7 +47,7 @@ clean:
 	rm -rf $(PROGRAM).bin $(PROGRAM).elf build/*
 	make -C $(LIBOPENCM3) clean
 
-flash:
+flash: $(PROGRAM).bin
 	stm32flash -w $(PROGRAM).bin $(UART_DEV)
 
 devstat:
