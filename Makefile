@@ -10,6 +10,8 @@ BUILD_DIR := build
 CFLAGS	  := -mcpu=cortex-m0 -mthumb -O2 -flto -I $(INC_DIR)
 LDFLAGS   := -nostartfiles -Wl,--script,linker.ld
 
+UART_DEV  := /dev/ttyUSB0
+
 ##########################
 # libopencm3 configuration
 ##########################
@@ -45,7 +47,10 @@ clean:
 	make -C $(LIBOPENCM3) clean
 
 flash:
-	false # TODO
+	stm32flash -w $(PROGRAM).bin $(UART_DEV)
+
+devstat:
+	stm32flash $(UART_DEV)
 
 $(PROGRAM).bin: $(PROGRAM).elf
 	$(OBJCOPY) -O binary $< $@
