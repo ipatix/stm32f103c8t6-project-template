@@ -8,7 +8,7 @@ SRC_DIR   := src
 BUILD_DIR := build
 
 CFLAGS	  := -O2 -Wall -Wextra -flto -I $(INC_DIR)
-LDFLAGS   := -nostartfiles -Wl,--script,linker.ld,--gc-sections --specs=nano.specs --specs=nosys.specs
+LDFLAGS   := -nostartfiles -Wl,--script,linker.ld,--gc-sections,-Map=$(PROGRAM).map --specs=nano.specs --specs=nosys.specs
 
 UART_DEV  := /dev/ttyUSB0
 
