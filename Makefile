@@ -40,7 +40,7 @@ OBJCOPY := $(PREF)objcopy
 ###################
 # compilation rules
 ###################
-.PHONY: all clean flash $(LIBOPENCM3)
+.PHONY: all clean flash devstat $(LIBOPENCM3)
 all: $(PROGRAM).bin
 
 clean:
