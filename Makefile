@@ -7,8 +7,8 @@ INC_DIR   := include
 SRC_DIR   := src
 BUILD_DIR := build
 
-CFLAGS	  := -mcpu=cortex-m0 -mthumb -O2 -flto -I $(INC_DIR)
-LDFLAGS   := -nostartfiles -Wl,--script,linker.ld
+CFLAGS	  := -O2 -flto -I $(INC_DIR)
+LDFLAGS   := -nostartfiles -Wl,--script,linker.ld,--gc-sections
 
 UART_DEV  := /dev/ttyUSB0
 
@@ -18,7 +18,7 @@ UART_DEV  := /dev/ttyUSB0
 LIBOPENCM3     := libopencm3
 LIBOPENCM3_LIB := $(LIBOPENCM3)/lib/libopencm3_stm32f1.a
 LIBOPENCM3_INC := $(LIBOPENCM3)/include
-CFLAGS := $(CFLAGS) -DSTM32F1
+CFLAGS := $(CFLAGS) -I $(LIBOPENCM3_INC) -DSTM32F1 -mcpu=cortex-m3 -mthumb
 
 ###################
 # compilation paths
@@ -61,7 +61,7 @@ $(PROGRAM).elf: $(OBJS) $(LIBOPENCM3_LIB)
 
 $(C_BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) -c -o $@ $< $(CFLAGS) -I $(LIBOPENCM3_INC)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(LIBOPENCM3_LIB):
 	$(MAKE) -C $(LIBOPENCM3)
