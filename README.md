@@ -1,4 +1,4 @@
-# stm32f103c8t6 C Project Template
+# stm32f103c8t6 C/C++ Project Template
 
 This is a project template for the STM32F103C8T6 part, which is used on so-called "blue-pill boards".
 It is supposed to ease setting up projects for these kinds of development boards. You only need to check out the repository and run the Makefile to get a working binary file.
@@ -17,7 +17,10 @@ This project works out of the box and only comes with (in my opinion) the necess
 
 # Setup and Compilation
 
-Requirements: arm-none-eabi Toolchain
+Requirements:
+
+- arm-none-eabi Toolchain (gcc, g++)
+- arm-none-eabi newlib (libc, libc++)
 
 Put your code into the `src` directory, your headers into `include` and you're good to go.
 
@@ -58,11 +61,6 @@ By default, this project is intended to run on a "blue-pill board" which has an 
 - Change the 'libopencm3 configuration' section in the Makefile to reference the correct libopencm3 library for the correct part.
 - Update the 'linker.ld' linkerscript. Most of the time, you'll just have to adjust the ROM and RAM size to match your part. The one which comes with this project was taken from `libopencm3/lib/stm32/f1/stm32f103_x8.ld`. Other valid linker scripts can be found in the `libopencm3/lib/` tree for reference. Please remember that these only get generated once the `make` has been executed in the libopencm3 directory.
 - (Optional) Adjust your own code: This dummy project doesn't contain any code yet. However, if you have already started working on your own code, you may have to adjust your own code to be compatible with your new target part.
-
-# Using C++
-
-Currently the Makefile does not support C++ out of the box. I originally intended to just add it but it appears that the linkerscripts of libopencm3 do not fully support C++ at the moment.
-If you want to try it nevertheless, just edit the Makefile in the 'compilation paths' section and add C++ (aka CXX) paths. You will also have to add a C++ rule ('compilation rules' section) for compiling the files.
 
 # Misc
 
